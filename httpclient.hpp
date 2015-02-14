@@ -4,20 +4,20 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 
-#include "request.hpp"
-#include "response.hpp"
+#include "httprequest.hpp"
+#include "httpresponse.hpp"
 
 namespace Bidstack {
     namespace Http {
 
-        class Client : public QObject {
+        class HttpClient : public QObject {
             Q_OBJECT
 
         public:
-            Client(QObject *parent = 0);
+            HttpClient(QObject *parent = 0);
 
         public:
-            Response* send(Request* request);
+            HttpResponse* send(HttpRequest* request);
 
         private:
             QNetworkAccessManager *m_manager;

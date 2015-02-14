@@ -6,13 +6,13 @@
 namespace Bidstack {
     namespace Http {
 
-        class Body : public QObject {
+        class HttpBody : public QObject {
             Q_OBJECT
 
         public:
-            Body(QObject *parent = 0);
-            Body(QString body, QObject *parent = 0);
-            Body(QByteArray body, QObject *parent = 0);
+            HttpBody(QObject *parent = 0);
+            HttpBody(QString body, QObject *parent = 0);
+            HttpBody(QByteArray body, QObject *parent = 0);
 
         public:
             QString toString();

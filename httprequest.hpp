@@ -5,16 +5,16 @@
 #include <QUrl>
 #include <QMap>
 
-#include "body.hpp"
+#include "httpbody.hpp"
 
 namespace Bidstack {
     namespace Http {
 
-        class Request : public QObject {
+        class HttpRequest : public QObject {
             Q_OBJECT
 
         public:
-            Request(QObject *parent = 0);
+            HttpRequest(QObject *parent = 0);
 
         public:
             void setHeaders(QMap<QString, QString> headers);
@@ -26,14 +26,14 @@ namespace Bidstack {
             void setUrl(QUrl url);
             QUrl url();
 
-            void setBody(Body* body);
-            Body* body();
+            void setBody(HttpBody* body);
+            HttpBody* body();
 
         private:
             QMap<QString, QString> m_headers;
             QString m_method;
             QUrl m_url;
-            Body* m_body;
+            HttpBody* m_body;
         };
 
     };

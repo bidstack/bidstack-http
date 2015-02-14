@@ -3,15 +3,15 @@
 #include <QTimer>
 #include <QEventLoop>
 
-#include "client.hpp"
+#include "httpclient.hpp"
 
 using namespace Bidstack::Http;
 
-Client::Client(QObject *parent) : QObject(parent) {
+HttpClient::HttpClient(QObject *parent) : QObject(parent) {
     m_manager = new QNetworkAccessManager();
 }
 
-Response* Client::send(Request* request) {
+HttpResponse* HttpClient::send(HttpRequest* request) {
     QNetworkRequest networkRequest(request->url());
 
     QMap<QString, QString> headers = request->headers();
@@ -42,13 +42,13 @@ Response* Client::send(Request* request) {
 
     loop.exec();
 
-    Response *response;
+    HttpResponse *response;
     if (timer.isActive()) {
         timer.stop();
-        response = new Response(networkReply);
+        response = new HttpResponse(networkReply);
     } else {
         networkReply->abort();
-        response = new Response(500);
+        response = new HttpResponse(500);
     }
 
     disconnect(networkReply, SIGNAL(finished()), &loop, SLOT(quit()));

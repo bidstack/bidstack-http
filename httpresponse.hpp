@@ -4,27 +4,28 @@
 #include <QObject>
 #include <QNetworkReply>
 
-#include "body.hpp"
+#include "httpbody.hpp"
 
 namespace Bidstack {
     namespace Http {
 
-        class Response : public QObject {
+        class HttpResponse : public QObject {
             Q_OBJECT
 
         public:
-            Response(int status, QObject *parent = 0);
-            Response(QNetworkReply *reply, QObject *parent = 0);
+            HttpResponse(int status, QObject *parent = 0);
+            HttpResponse(int status, QMap<QString, QString> headers, HttpBody *body, QObject *parent = 0);
+            HttpResponse(QNetworkReply *reply, QObject *parent = 0);
 
         public:
             int status();
             QMap<QString, QString> headers();
-            Body* body();
+            HttpBody* body();
 
         private:
             int m_status;
             QMap<QString, QString> m_headers;
-            Body* m_body;
+            HttpBody* m_body;
         };
 
     };

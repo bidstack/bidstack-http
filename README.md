@@ -8,7 +8,7 @@ Easy to use HTTP client written in Qt/C++
 #include <QCoreApplication>
 #include <QDebug>
 
-#include "client.hpp"
+#include "httpclient.hpp"
 
 using namespace Bidstack::Http;
 
@@ -18,12 +18,12 @@ int main(int argc, char *argv[]) {
     QMap<QString, QString> headers;
     headers.insert("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 
-    Request *request = new Request();
+    HttpRequest *request = new HttpRequest();
     request->setMethod("GET");
     request->setUrl(QUrl("https://github.com/bidstack/bidstack-http"));
     request->setHeaders(headers);
 
-    Client *client = new Client();
+    HttpClient *client = new HttpClient();
     Response *response = client->send(request);
 
     qDebug() << "Headers:" << response->headers();
