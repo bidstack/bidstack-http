@@ -27,6 +27,46 @@ int HttpResponse::status() {
     return m_status;
 }
 
+bool HttpResponse::isValid() {
+    return status() >= 100 && status() < 600;
+}
+
+bool HttpResponse::isInformational() {
+    return status() >= 100 && status() < 200;
+}
+
+bool HttpResponse::isSuccessful() {
+    return status() >= 200 && status() < 300;
+}
+
+bool HttpResponse::isRedirection() {
+    return status() >= 300 && status() < 400;
+}
+
+bool HttpResponse::isClientError() {
+    return status() >= 400 && status() < 500;
+}
+
+bool HttpResponse::isServerError() {
+    return status() >= 500 && status() < 600;
+}
+
+bool HttpResponse::isOk() {
+    return status() == 200;
+}
+
+bool HttpResponse::isForbidden() {
+    return status() == 403;
+}
+
+bool HttpResponse::isNotFound() {
+    return status() == 404;
+}
+
+bool HttpResponse::isEmpty() {
+    return status() == 204 || status() == 304;
+}
+
 QMap<QString, QString> HttpResponse::headers() {
     return m_headers;
 }

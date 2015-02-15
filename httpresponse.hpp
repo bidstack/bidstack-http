@@ -22,6 +22,18 @@ namespace Bidstack {
             QMap<QString, QString> headers();
             HttpBody* body();
 
+        public:
+            bool isValid();
+            bool isInformational();
+            bool isSuccessful();
+            bool isRedirection();
+            bool isClientError();
+            bool isServerError();
+            bool isOk();
+            bool isForbidden();
+            bool isNotFound();
+            bool isEmpty();
+
         private:
             int m_status;
             QMap<QString, QString> m_headers;
