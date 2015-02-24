@@ -21,3 +21,7 @@ QString HttpBody::toString() {
 QByteArray HttpBody::toByteArray() {
     return m_body.toUtf8();
 }
+
+bool HttpBody::isEmpty() {
+    return m_body.isEmpty();
+}
